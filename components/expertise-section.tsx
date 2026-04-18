@@ -88,42 +88,43 @@ function ExpertiseCard({
     <motion.div
       ref={cardRef}
       style={{ scale, opacity }}
-      className={`${expertise.color} rounded-[2rem] p-6 md:p-10 min-h-[85vh] md:min-h-[80vh] sticky`}
+      className={`${expertise.color} rounded-[2rem] p-4 sm:p-6 md:p-10 min-h-screen sm:min-h-[85vh] md:min-h-[80vh] sticky`}
       // Stacking effect - each card sticks a bit lower
       id={index === 0 ? "expertises" : undefined}
     >
       {/* Badge and Number */}
-      <div className="flex items-start justify-between mb-4">
-        <span className="px-4 py-2 rounded-full bg-white text-[#1a1a1a] font-medium text-sm">
+      <div className="flex items-start justify-between mb-4 gap-4 flex-wrap">
+        <span className="px-3 sm:px-4 py-2 rounded-full bg-white text-[#1a1a1a] font-medium text-xs sm:text-sm">
           Expertise
         </span>
-        <span className={`text-[5rem] md:text-[8rem] font-black leading-none ${expertise.numberColor}`}>
+        <span className={`text-[3rem] sm:text-[5rem] md:text-[8rem] font-black leading-none ${expertise.numberColor}`}>
           {expertise.number}
         </span>
       </div>
 
       {/* Title */}
-      <h2 className={`text-[clamp(2rem,8vw,4rem)] font-black leading-none ${expertise.textColor} -mt-8 md:-mt-16`}>
+      <h2 className={`text-[clamp(1.5rem,6vw,4rem)] font-black leading-none ${expertise.textColor} -mt-4 md:-mt-16`}>
         {expertise.title}
       </h2>
 
       {/* Image */}
-      <div className={`mt-8 w-48 md:w-64 rounded-2xl overflow-hidden border-4 ${expertise.borderColor}`}>
+      <div className={`mt-6 sm:mt-8 w-36 sm:w-48 md:w-64 rounded-2xl overflow-hidden border-4 ${expertise.borderColor} flex-shrink-0`}>
         <Image
           src={expertise.image}
           alt={expertise.title}
           width={300}
           height={400}
+          priority={false}
           className="w-full h-auto object-cover"
         />
       </div>
 
       {/* Description */}
-      <div className="mt-8 max-w-xl">
-        <h3 className={`text-xl md:text-2xl font-bold ${expertise.textColor} mb-4`}>
+      <div className="mt-6 sm:mt-8 max-w-xl">
+        <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${expertise.textColor} mb-3 sm:mb-4`}>
           {expertise.subtitle}
         </h3>
-        <p className={`${expertise.textColor}/80 text-base md:text-lg leading-relaxed`}>
+        <p className={`${expertise.textColor}/80 text-sm sm:text-base md:text-lg leading-relaxed`}>
           {expertise.description}
         </p>
       </div>
@@ -131,11 +132,11 @@ function ExpertiseCard({
       {/* CTA Button */}
       <a
         href="#contact"
-        className={`mt-8 inline-flex items-center gap-3 px-6 py-3 rounded-full ${expertise.buttonBg} ${expertise.buttonText} font-semibold transition-transform hover:scale-105`}
+        className={`mt-6 sm:mt-8 inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full ${expertise.buttonBg} ${expertise.buttonText} font-semibold text-sm sm:text-base transition-transform hover:scale-105`}
       >
         {expertise.cta}
-        <span className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-          <ArrowRight className="w-5 h-5" />
+        <span className="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+          <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5" />
         </span>
       </a>
     </motion.div>
@@ -144,8 +145,8 @@ function ExpertiseCard({
 
 export function ExpertiseSection() {
   return (
-    <section className="px-4 md:px-8 py-16 relative">
-      <div className="max-w-7xl mx-auto relative">
+    <section className="px-3 sm:px-4 md:px-8 py-12 sm:py-16 relative">
+      <div className="relative">
         {/* Sticky stack of cards */}
         <div className="relative">
           {expertises.map((expertise, index) => (

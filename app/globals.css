@@ -16,7 +16,8 @@
   --secondary-foreground: #1a1a1a;
   --muted: #E8E0DA;
   --muted-foreground: #666666;
-  --accent: #FF69B4;
+  --accent: #fe97ca;
+  /* --accent: #FF69B4; */
   --accent-foreground: #1a1a1a;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;

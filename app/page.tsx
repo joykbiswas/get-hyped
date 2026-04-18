@@ -1,4 +1,3 @@
-import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
 import { ExpertiseSection } from "@/components/expertise-section"
 import { WorkSection } from "@/components/work-section"
@@ -7,8 +6,7 @@ import { Footer } from "@/components/footer"
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#FDF6F0] overflow-x-hidden">
-      <Header />
+    <main className="w-full max-w-full bg-[#FDF6F0] overflow-x-hidden">
       <HeroSection />
       <ExpertiseSection />
       <WorkSection />

@@ -1,22 +1,71 @@
-"use client"
+"use client";
 
-import { motion, useScroll, useTransform } from "framer-motion"
-import { useRef } from "react"
-import Image from "next/image"
+import { motion } from "framer-motion";
+import { useRef, useState } from "react";
+import Image from "next/image";
 
 export function HeroSection() {
-  const ref = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  })
+  const ref = useRef<HTMLDivElement>(null);
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, 100])
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -50])
+  // Track hover state for each card
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  // Card data with initial transforms (matching the Webflow layout)
+  const cards = [
+    {
+      id: 0,
+      type: "stat",
+      value: "10M+",
+      title: "Organische views",
+      description: "Groei door slimme content",
+      theme: "blue",
+      initialTransform: { x: 0, y: -2.1959, rotate: 8.47727, scale: 1 },
+      hoverTransform: { x: 5, y: -5, rotate: 12, scale: 1.05 },
+    },
+    {
+      id: 1,
+      type: "media",
+      imageUrl:
+        "https://cdn.prod.website-files.com/6848603da8e6ac95794b7498/69c40296636e683096701cda_video-thumb-01.avif",
+      videoUrl: "https://gethyped.b-cdn.net/Salontopper/Loop%20Salontopper.mp4",
+      initialTransform: { x: 0, y: -3.7559, rotate: -3.70668, scale: 1 },
+      hoverTransform: { x: -8, y: -8, rotate: -8, scale: 1.05 },
+    },
+    {
+      id: 2,
+      type: "stat",
+      value: "30+",
+      title: "Merken geholpen",
+      description: "Van start-up tot multinational",
+      theme: "green",
+      initialTransform: { x: 0, y: -3.379, rotate: 7.56665, scale: 1 },
+      hoverTransform: { x: 6, y: -4, rotate: 10, scale: 1.05 },
+    },
+    {
+      id: 3,
+      type: "media",
+      imageUrl:
+        "https://cdn.prod.website-files.com/6848603da8e6ac95794b7498/69c402fa5b2a05b98200d317_video-thumb-02.avif",
+      videoUrl: "https://gethyped.b-cdn.net/Petrol%20Head/petrolhead-loop.mp4",
+      initialTransform: { x: 0, y: -3.6436, rotate: 8.71952, scale: 1 },
+      hoverTransform: { x: -5, y: -6, rotate: -5, scale: 1.05 },
+    },
+  ];
+
+  // Get transform for a specific card based on hover state
+  const getCardTransform = (cardId: number, isHovered: boolean) => {
+    const card = cards.find((c) => c.id === cardId);
+    if (!card) return "";
+    const transform = isHovered ? card.hoverTransform : card.initialTransform;
+    return `translate(${transform.x}%, ${transform.y}%) rotate(${transform.rotate}deg) scale(${transform.scale})`;
+  };
 
   return (
-    <section ref={ref} className="min-h-screen pt-24 pb-16 px-4 md:px-8 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section
+      ref={ref}
+      className="min-h-screen pt-20 sm:pt-24 pb-12 sm:pb-16 px-3 sm:px-4 md:px-8 overflow-hidden"
+    >
+      <div className="mx-auto">
         {/* Main Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
@@ -36,58 +85,194 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-6 text-lg md:text-xl text-[#1a1a1a] font-medium max-w-md"
+          className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-[#1a1a1a] font-medium max-w-md"
         >
           Klaar met gokken op content die niets oplevert?
         </motion.p>
 
-        {/* Stats and Images Grid */}
-        <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6">
-          {/* Stats Card */}
-          <motion.div
-            style={{ y: y1 }}
-            className="col-span-1 bg-[#0088FF] rounded-3xl p-6 flex flex-col justify-between min-h-[200px] md:min-h-[280px]"
-          >
-            <div>
-              <p className="text-[clamp(2.5rem,8vw,4rem)] font-black text-[#1a1a1a] leading-none">
-                10M+
-              </p>
-            </div>
-            <div>
-              <p className="text-[#1a1a1a] font-semibold text-sm border-b border-[#1a1a1a]/30 pb-2 mb-2">
-                Organische views
-              </p>
-              <p className="text-[#1a1a1a]/80 text-sm">
-                Groei door slimme content
-              </p>
-            </div>
-          </motion.div>
+        {/* Cards Container - Overlapping layout like Webflow */}
+        <div className="mt-10 sm:mt-14 md:mt-16 relative mb-8 sm:mb-12 md:mb-16">
+          <div className="mwg_effect025">
+            <div className="container-col-12">
+              <div
+                data-preloader-cards=""
+                className="container is-mwg_effect025 w-full"
+              >
+                {/* Desktop: Show all cards */}
+                <div className="hidden lg:flex lg:flex-nowrap gap-6">
+                  {cards.map((card) => (
+                    <motion.div
+                      key={card.id}
+                      className={`
+                        results-card 
+                        w-[280px] md:w-[320px] lg:w-[360px] 
+                        flex-shrink-0
+                        transition-all duration-300 ease-out
+                        cursor-pointer  
+                        ${
+                          card.type === "stat"
+                            ? card.theme === "blue"
+                              ? "bg-[#0088FF]"
+                              : "bg-[#00C853]"
+                            : ""
+                        }
+                        rounded-3xl overflow-hidden
+                        shadow-xl
+                        ${
+                          card.id !== 0
+                            ? "md:-ml-[5vw] lg:-ml-[10vw]"
+                            : ""
+                        }
+                      `}
+                      style={{
+                        transform: getCardTransform(card.id, hoveredIndex === card.id),
+                        transition: "transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1)",
+                        zIndex: hoveredIndex === card.id ? 50 : 10 - card.id,
+                      }}
+                      onMouseEnter={() => setHoveredIndex(card.id)}
+                      onMouseLeave={() => setHoveredIndex(null)}
+                      initial={false}
+                      animate={{
+                        transform: getCardTransform(card.id, hoveredIndex === card.id),
+                      }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 20,
+                      }}
+                    >
+                      {card.type === "stat" ? (
+                        <div className="results-card_content p-6 flex flex-col justify-between min-h-[280px] md:min-h-[320px]">
+                          <div>
+                            <div className="results-card_title text-[clamp(2rem,6vw,4rem)] font-black text-[#1a1a1a] leading-none">
+                              {card.value}
+                            </div>
+                          </div>
+                          <div className="results-card_body">
+                            <h2 className="results-card_subtitle text-[#1a1a1a] font-bold text-lg">
+                              {card.title}
+                            </h2>
+                            <div className="results-card_divider h-px bg-[#1a1a1a]/30 my-2"></div>
+                            <p className="results-card_paragraph text-[#1a1a1a]/80 text-sm">
+                              {card.description}
+                            </p>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="relative w-full min-h-[280px] md:min-h-[320px] group">
+                          <Image
+                            src={card.imageUrl || ""}
+                            alt="Content thumbnail"
+                            fill
+                            className="object-cover"
+                            draggable={false}
+                          />
+                          <video
+                            muted
+                            loop
+                            playsInline
+                            src={card.videoUrl}
+                            autoPlay={true}
+                            className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                            onMouseEnter={(e) => {
+                              const videoElement = e.currentTarget as HTMLVideoElement;
+                              videoElement.play();
+                            }}
+                          />
+                        </div>
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
 
-          {/* Image 1 - Woman from behind */}
-          <motion.div
-            style={{ y: y2 }}
-            className="col-span-1 rounded-3xl overflow-hidden min-h-[200px] md:min-h-[280px] relative"
-          >
-            <Image
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=500&fit=crop"
-              alt="Creative content"
-              fill
-              className="object-cover object-top"
-            />
-          </motion.div>
-
-          {/* Image 2 - Vintage car (hidden on mobile, shown on md+) */}
-          <motion.div
-            style={{ y: y1 }}
-            className="hidden md:block col-span-1 rounded-3xl overflow-hidden min-h-[280px] relative"
-          >
-            <Image
-              src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=500&fit=crop"
-              alt="Vintage car shoot"
-              fill
-              className="object-cover object-center"
-            />
-          </motion.div>
+                {/* Mobile/Tablet: Horizontal scrollable cards with overlap effect */}
+                <div className="lg:hidden w-full relative">
+                  <div className="overflow-x-auto pb-4 pt-10 px-2 sm:px-4">
+                    <div className="flex gap-2 sm:gap-4 w-max">
+                      {cards.map((card, idx) => (
+                        <motion.div
+                          key={card.id}
+                          className={`
+                            results-card 
+                            w-[260px] sm:w-[320px]
+                            flex-shrink-0
+                            transition-all duration-300 ease-out
+                            cursor-pointer  
+                            ${
+                              card.type === "stat"
+                                ? card.theme === "blue"
+                                  ? "bg-[#0088FF]"
+                                  : "bg-[#00C853]"
+                                : ""
+                            }
+                            rounded-3xl overflow-hidden
+                            shadow-xl
+                            ${idx !== 0 ? "-ml-8 sm:-ml-12" : ""}
+                          `}
+                          style={{
+                            transform: getCardTransform(card.id, hoveredIndex === card.id),
+                            transition: "transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1)",
+                            zIndex: hoveredIndex === card.id ? 50 : 10 - card.id,
+                          }}
+                          onMouseEnter={() => setHoveredIndex(card.id)}
+                          onMouseLeave={() => setHoveredIndex(null)}
+                          initial={false}
+                          animate={{
+                            transform: getCardTransform(card.id, hoveredIndex === card.id),
+                          }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 300,
+                            damping: 20,
+                          }}
+                        >
+                          {card.type === "stat" ? (
+                            <div className="results-card_content p-4 sm:p-6 flex flex-col justify-between min-h-[280px] sm:min-h-[320px]">
+                              <div>
+                                <div className="results-card_title text-[clamp(2rem,6vw,3.5rem)] font-black text-[#1a1a1a] leading-none">
+                                  {card.value}
+                                </div>
+                              </div>
+                              <div className="results-card_body">
+                                <h2 className="results-card_subtitle text-[#1a1a1a] font-bold text-base sm:text-lg">
+                                  {card.title}
+                                </h2>
+                                <div className="results-card_divider h-px bg-[#1a1a1a]/30 my-2"></div>
+                                <p className="results-card_paragraph text-[#1a1a1a]/80 text-xs sm:text-sm">
+                                  {card.description}
+                                </p>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="relative w-full min-h-[280px] sm:min-h-[320px] group">
+                              <Image
+                                src={card.imageUrl || ""}
+                                alt="Content thumbnail"
+                                fill
+                                className="object-cover"
+                                draggable={false}
+                              />
+                              <video
+                                muted
+                                loop
+                                playsInline
+                                src={card.videoUrl}
+                                className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                onMouseEnter={(e) => {
+                                  const videoElement = e.currentTarget as HTMLVideoElement;
+                                  videoElement.play();
+                                }}
+                              />
+                            </div>
+                          )}
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Description Text */}
@@ -96,23 +281,49 @@ export function HeroSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-12 text-[clamp(1.25rem,4vw,2rem)] font-semibold text-[#1a1a1a] leading-tight max-w-2xl"
+          className="mt-16 sm:mt-20 md:mt-24 text-[clamp(1rem,4vw,2rem)] font-semibold text-[#1a1a1a] leading-tight max-w-2xl px-2 sm:px-0"
         >
-          Wij maken content die opvalt. Die blijft hangen. Die jouw doelgroep raakt en jouw merk in beweging zet.
+          Wij maken content die opvalt. Die blijft hangen. Die jouw doelgroep
+          raakt en jouw merk in beweging zet.
         </motion.p>
+      </div>
 
-        {/* About Section Preview */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <style jsx>{`
+        /* Desktop overlapping cards */
+        @media (min-width: 1024px) {
+          .mwg_effect025 .results-card:not(:first-child) {
+            margin-left: -10vw;
+          }
+        }
+        @media (min-width: 768px) and (max-width: 1023px) {
+          .mwg_effect025 .results-card:not(:first-child) {
+            margin-left: -5vw;
+          }
+        }
+        
+        /* Mobile - ensure proper spacing */
+        @media (max-width: 767px) {
+          .container-col-12 {
+            position: relative;
+            height: auto;
+          }
+        }
+      `}</style>
+      
+
+       {/* About Section Preview */}
+<div className="mt-14 sm:mt-18 md:mt-24 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="rounded-3xl overflow-hidden relative aspect-[4/3]"
+            className="rounded-3xl overflow-hidden relative aspect-[4/3] w-full"
           >
             <Image
               src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=450&fit=crop"
               alt="Team in action"
               fill
+              priority={false}
               className="object-cover"
             />
           </motion.div>
@@ -122,21 +333,21 @@ export function HeroSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <p className="text-[clamp(1.1rem,3vw,1.5rem)] font-medium text-[#1a1a1a] leading-relaxed">
+            <p className="text-[clamp(1rem,3vw,1.5rem)] font-medium text-[#1a1a1a] leading-relaxed px-2 sm:px-0">
               We stoppen niet bij mooie plaatjes en vette beelden. We maken het meetbaar. Zo weet je precies wat werkt en wat niet. Nooit meer content zonder strategie. Nooit meer content zonder resultaat.
             </p>
             <a
               href="#about"
-              className="mt-6 inline-flex items-center gap-3 px-6 py-3 rounded-full border-2 border-[#1a1a1a] text-[#1a1a1a] font-semibold hover:bg-[#1a1a1a] hover:text-white transition-colors"
+              className="mt-4 sm:mt-6 inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full border-2 border-[#1a1a1a] text-[#1a1a1a] font-semibold text-sm sm:text-base hover:bg-[#1a1a1a] hover:text-white transition-colors"
             >
               Leer ons kennen
-              <span className="w-10 h-10 rounded-full bg-[#1a1a1a] text-white flex items-center justify-center group-hover:bg-white group-hover:text-[#1a1a1a]">
+              <span className="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-[#1a1a1a] text-white flex items-center justify-center shrink-0">
                 →
               </span>
             </a>
           </motion.div>
         </div>
-      </div>
+
     </section>
-  )
+  );
 }

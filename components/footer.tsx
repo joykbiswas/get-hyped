@@ -102,10 +102,10 @@ export function Footer() {
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full bg-white border border-[#E8E0DA] flex items-center justify-center text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white hover:border-[#1a1a1a] transition-colors"
+              className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white border border-[#E8E0DA] flex items-center justify-center text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white hover:border-[#1a1a1a] transition-colors"
               aria-label={social.label}
             >
-              <social.icon className="w-5 h-5" />
+              <social.icon className="w-4 sm:w-5 h-4 sm:h-5" />
             </a>
           ))}
         </motion.div>
@@ -116,7 +116,7 @@ export function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="text-center space-y-2 mb-8"
+          className="text-center space-y-2 mb-8 text-sm sm:text-base"
         >
           <a
             href="mailto:info@gethyped.nl"
@@ -130,7 +130,7 @@ export function Footer() {
           >
             +31 6 1533 7496
           </a>
-          <p className="text-[#1a1a1a]/70 pt-4">
+          <p className="text-[#1a1a1a]/70 pt-4 text-xs sm:text-sm">
             Beltrumsestraat 6,
             <br />
             7141 AL Groenlo
@@ -143,7 +143,7 @@ export function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
-          className="text-center space-y-2 text-sm text-[#1a1a1a]/60"
+          className="text-center space-y-2 text-xs sm:text-sm text-[#1a1a1a]/60"
         >
           <a href="#" className="hover:text-[#1a1a1a] hover:underline">
             Privacyvoorwaarden
