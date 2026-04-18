@@ -63,7 +63,7 @@ export function HeroSection() {
   return (
     <section
       ref={ref}
-      className="min-h-screen pt-20 sm:pt-24 pb-12 sm:pb-16 px-3 sm:px-4 md:px-8 overflow-hidden"
+      className="min-h-screen pt-20 sm:pt-24 pb-12 sm:pb-16 px-3 sm:px-4 md:px-8 lg:p-8 overflow-hidden"
     >
       <div className="mx-auto">
         {/* Main Headline */}
@@ -91,7 +91,7 @@ export function HeroSection() {
         </motion.p>
 
         {/* Cards Container - Overlapping layout like Webflow */}
-        <div className="mt-10 sm:mt-14 md:mt-16 relative mb-8 sm:mb-12 md:mb-16">
+        <div className="mt-10 sm:mt-14 md:mt-16 relative mb-8 sm:mb-12 md:mb-16 w-full md:pl-12">
           <div className="mwg_effect025">
             <div className="container-col-12">
               <div
@@ -99,13 +99,13 @@ export function HeroSection() {
                 className="container is-mwg_effect025 w-full"
               >
                 {/* Desktop: Show all cards */}
-                <div className="hidden lg:flex lg:flex-nowrap gap-6">
+                <div className="hidden lg:flex lg:flex-nowrap  md:gap-12 lg:gap-28">
                   {cards.map((card) => (
                     <motion.div
                       key={card.id}
                       className={`
                         results-card 
-                        w-[280px] md:w-[320px] lg:w-[360px] 
+                        w-[280px]  md:w-[320px] lg:w-[360px] 
                         flex-shrink-0
                         transition-all duration-300 ease-out
                         cursor-pointer  
@@ -188,13 +188,13 @@ export function HeroSection() {
                 {/* Mobile/Tablet: Horizontal scrollable cards with overlap effect */}
                 <div className="lg:hidden w-full relative">
                   <div className="overflow-x-auto pb-4 pt-10 px-2 sm:px-4">
-                    <div className="flex gap-2 sm:gap-4 w-max">
+                    <div className="flex gap-2 sm:gap-4  pl-2">
                       {cards.map((card, idx) => (
                         <motion.div
                           key={card.id}
                           className={`
                             results-card 
-                            w-[260px] sm:w-[320px]
+                            w-[180px] sm:w-[230px]
                             flex-shrink-0
                             transition-all duration-300 ease-out
                             cursor-pointer  
@@ -281,7 +281,7 @@ export function HeroSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-16 sm:mt-20 md:mt-24 text-[clamp(1rem,4vw,2rem)] font-semibold text-[#1a1a1a] leading-tight max-w-2xl px-2 sm:px-0"
+          className="mt-16 sm:mt-20 md:mt-24 text-3xl md:text-4xl lg:text-6xl md:pl-20 font-bold text-[#1a1a1a] leading-tight max-w-6xl px-2 sm:px-0"
         >
           Wij maken content die opvalt. Die blijft hangen. Die jouw doelgroep
           raakt en jouw merk in beweging zet.
@@ -312,41 +312,7 @@ export function HeroSection() {
       
 
        {/* About Section Preview */}
-<div className="mt-14 sm:mt-18 md:mt-24 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="rounded-3xl overflow-hidden relative aspect-[4/3] w-full"
-          >
-            <Image
-              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=450&fit=crop"
-              alt="Team in action"
-              fill
-              priority={false}
-              className="object-cover"
-            />
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-[clamp(1rem,3vw,1.5rem)] font-medium text-[#1a1a1a] leading-relaxed px-2 sm:px-0">
-              We stoppen niet bij mooie plaatjes en vette beelden. We maken het meetbaar. Zo weet je precies wat werkt en wat niet. Nooit meer content zonder strategie. Nooit meer content zonder resultaat.
-            </p>
-            <a
-              href="#about"
-              className="mt-4 sm:mt-6 inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full border-2 border-[#1a1a1a] text-[#1a1a1a] font-semibold text-sm sm:text-base hover:bg-[#1a1a1a] hover:text-white transition-colors"
-            >
-              Leer ons kennen
-              <span className="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-[#1a1a1a] text-white flex items-center justify-center shrink-0">
-                →
-              </span>
-            </a>
-          </motion.div>
-        </div>
 
     </section>
   );
