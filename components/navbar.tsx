@@ -90,7 +90,7 @@ export function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(true)}
-            className="md:hidden w-10 h-10 rounded-full bg-accent flex items-center justify-center"
+            className="md:hidden w-10 h-10 rounded bg-accent flex items-center justify-center"
             aria-label="Open menu"
           >
             <div className="flex flex-col gap-1.5">
@@ -109,7 +109,7 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[100] bg-[#FAF4EC]"
+            className="fixed inset-0 z-[100] bg-accent/90 backdrop-blur-sm m-2 rounded"
           >
             <div className="p-4 sm:p-6 h-full flex flex-col">
               <div className="flex items-center justify-between">
@@ -121,7 +121,7 @@ export function Navbar() {
                 {/* Close Button */}
                 <button
                   onClick={() => setIsMenuOpen(false)}
-                  className="w-10 h-10 rounded-full bg-accent flex items-center justify-center"
+                  className="w-10 h-10 rounded  bg-white flex items-center justify-center"
                   aria-label="Close menu"
                 >
                   <X className="w-5 h-5 text-black" />
@@ -131,17 +131,20 @@ export function Navbar() {
               {/* Menu Items - Centered with pill background */}
               <nav className="flex-1 flex flex-col items-center justify-center gap-3">
                 {navItems.map((item, index) => (
-                  <motion.a
+                  <motion.div
                     key={item.label}
-                    href={item.href}
-                    onClick={() => setIsMenuOpen(false)}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className="px-8 py-3 rounded-full bg-white text-[#1a1a1a] font-medium text-lg w-full max-w-[250px] text-center shadow-sm hover:shadow-md transition-all duration-300"
+                    className="w-full max-w-[250px] "
                   >
-                    {item.label}
-                  </motion.a>
+                    <NavSwooshLink 
+                      href={item.href}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.label}
+                    </NavSwooshLink>
+                  </motion.div>
                 ))}
               </nav>
 
@@ -155,7 +158,7 @@ export function Navbar() {
                 <a
                   href="#contact"
                   onClick={() => setIsMenuOpen(false)}
-                  className="px-8 py-3 rounded-full bg-accent text-white font-semibold text-lg flex items-center gap-3 hover:bg-accent transition-all duration-300 group"
+                  className="px-8 py-3 rounded-full bg-black text-white font-semibold text-lg flex items-center gap-3 hover:bg-accent transition-all duration-300 group"
                 >
                   Get Results
                   <ArrowIcon />
@@ -224,25 +227,31 @@ function LogoIcon() {
 }
 
 // Swoosh Navigation Link Component
+// Swoosh Navigation Link Component (Updated with your requested style)
 function NavSwooshLink({
   href,
   children,
+  onClick,
 }: {
   href: string;
   children: React.ReactNode;
+  onClick?: () => void;
 }) {
   return (
     <a
       href={href}
-      className="relative inline-flex items-center justify-center overflow-hidden rounded-full group"
+      onClick={onClick}
+      className="group relative cursor-pointer px-6 py-2  bg-white rounded-full overflow-hidden text-black text-center font-semibold inline-block w-full max-md:h-14 max-md:pt-4 transition-all duration-300"
     >
-      <span className="absolute inset-0 flex pointer-events-none rounded-full">
-        <span className="flex-1 h-full bg-accent transition-transform duration-400 ease-[cubic-bezier(0.2,0.9,0.4,1.1)] scale-x-0 group-hover:scale-x-100 origin-left delay-75 rounded-l-full" />
-        <span className="flex-1 h-full bg-accent  transition-transform duration-400 ease-[cubic-bezier(0.2,0.9,0.4,1.1)] scale-x-0 group-hover:scale-x-100 origin-left rounded-r-full" />
-      </span>
-      <span className="relative z-10 px-4 lg:px-5 py-2 lg:py-2.5 text-sm font-medium text-black  group-hover:text-black transition-colors duration-250">
+      {/* Original Text - Slides Up and Disappears */}
+      <span className="translate-y-0 group-hover:-translate-y-12 group-hover:opacity-0 transition-all duration-500 inline-block">
         {children}
       </span>
+
+      {/* Hover Text - Slides Up from Bottom */}
+      <div className="flex text-white bg-black z-10 items-center absolute left-0 top-0 h-full w-full justify-center translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 rounded-full group-hover:rounded-none">
+        <span>{children}</span>
+      </div>
     </a>
   );
 }
