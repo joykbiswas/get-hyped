@@ -105,7 +105,7 @@ export function Footer() {
 
   return (
     <footer id="contact" className="relative bg-[#FDF6F0] ">
-      <div className="container mx-auto px-5">
+      <div className="container mx-auto px-2">
         {/* ──── TOP SECTION ──── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -138,7 +138,7 @@ export function Footer() {
         </motion.div>
 
         {/* ──── BOTTOM SECTION ──── */}
-        <div className=" grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 rounded-tl-[1400px]  bg-muted ">
+        <div className=" grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 p-1 rounded-tl-[1400px]  bg-muted ">
           {/* LEFT SIDE - Logo */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -188,14 +188,45 @@ export function Footer() {
                   ))}
                 </div>
               </div>
-              <div className="flex pt-8 gap-12">
+
+              <div className="flex flex-col p-2 sm:hidden">
+              <div className="gap-8 ">
+                {/* Contact Section */}
+                <div className="space-y-2">
+                  <h3 className="font-bold text-[#1a1a1a] text-xl">Contact</h3>
+                  <div className="space-y-1 text-xs">
+                    <p className="text-[#1a1a1a]">info@gethyped.nl</p>
+                    <p className="text-[#1a1a1a]">+31 6 1533 7496</p>
+                  </div>
+                </div>
+
+                {/* Address Section */}
+                <div className="space-y-2">
+                  <h3 className="font-bold text-[#1a1a1a] text-xl pt-4">
+                    Adress
+                  </h3>
+                  <p className="text-[#1a1a1a]/70 text-xs leading-relaxed">
+                    Beltrumsestraat 6,
+                    <br />
+                    7141 AL Groenlo
+                  </p>
+                </div>
+              </div>
+              <div>
+                <a href="#" className="hover:text-[#1a1a1a] hover:underline">
+                  Privacyvoorwaarden
+                </a>
+              </div>
+            </div>
+
+              <div className="flex pt-8 gap-12 max-sm:text-sm">
                 <p>© 2025 Get Hyped</p>
                 <p className="">© Design by Dylan</p>
               </div>
             </div>
 
             {/* Contact and Address in Two Columns */}
-            <div className="flex flex-col p-2">
+            <div className="flex flex-col p-2 max-sm:hidden">
               <div className="gap-8 ">
                 {/* Contact Section */}
                 <div className="space-y-2">
