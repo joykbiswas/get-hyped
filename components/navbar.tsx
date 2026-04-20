@@ -13,15 +13,11 @@ export function Navbar() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Hide/show logic
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down & past threshold - hide
         setIsVisible(false);
       } else if (currentScrollY < lastScrollY) {
-        // Scrolling up - show
         setIsVisible(true);
       } else if (currentScrollY <= 50) {
-        // At the very top - show
         setIsVisible(true);
       }
 
@@ -226,8 +222,6 @@ function LogoIcon() {
   );
 }
 
-// Swoosh Navigation Link Component
-// Swoosh Navigation Link Component (Updated with your requested style)
 function NavSwooshLink({
   href,
   children,
@@ -256,7 +250,6 @@ function NavSwooshLink({
   );
 }
 
-// Arrow Icon Component
 function ArrowIcon() {
   return (
     <svg

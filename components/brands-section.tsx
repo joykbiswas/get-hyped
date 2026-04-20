@@ -63,7 +63,7 @@ export function BrandsSection() {
     if (!marquee) return;
 
     let animationId: number;
-    const speed = 0.5; // pixels per frame
+    const speed = 0.5;
 
     const animate = () => {
       if (!isDragging && marquee) {
@@ -100,7 +100,6 @@ export function BrandsSection() {
     setIsDragging(false);
   };
 
-  // Duplicate logos for seamless infinite scroll
   const duplicatedLogos = [...brandLogos, ...brandLogos, ...brandLogos];
 
   return (
