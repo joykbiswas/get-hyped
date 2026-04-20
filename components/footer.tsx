@@ -105,7 +105,7 @@ export function Footer() {
 
   return (
     <footer id="contact" className="relative bg-[#FDF6F0] ">
-      <div className="container mx-auto px-2">
+      <div className="container mx-auto">
         {/* ──── TOP SECTION ──── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -119,7 +119,7 @@ export function Footer() {
           </h1>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center p-2">
             <a
               href="mailto:info@gethyped.nl"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-[#1a1a1a] text-[#1a1a1a] font-semibold text-sm hover:bg-[#1a1a1a] hover:text-white transition-colors"
@@ -157,7 +157,7 @@ export function Footer() {
             className="space-y-8 flex gap-8"
           >
             {/* Navigation Links */}
-            <div className="pt-2">
+            <div className="pt-2 px-2">
               <div className="flex flex-wrap gap-2">
                 {navLinks.map((link) => (
                   <a
