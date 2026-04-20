@@ -27,7 +27,7 @@ const cards: ExpertiseCard[] = [
     description:
       "We duiken diep in jouw merk, doelgroep en doelen. En vertalen data naar een duidelijk plan met formats die écht impact maken. Zo weet je precies waarom het werkt.",
     cta: "Meer over social strategie",
-    href: "/expertises/social-strategie",
+    href: "",
     bg: "#FFFFFF",
     numberColor: "#E8E4DE",
     imageBorder: "#FF4D00",
@@ -41,7 +41,7 @@ const cards: ExpertiseCard[] = [
     description:
       "We maken content die opvalt. Blijft hangen. En jouw doelgroep raakt. Creatief, snel en energiek. Altijd met het doel voor ogen.",
     cta: "Meer over content creatie",
-    href: "/expertises/content-creatie",
+    href: "",
     bg: "#F4A8F0",
     numberColor: "#E87FE0",
     imageBorder: "#FFFFFF",
@@ -55,7 +55,7 @@ const cards: ExpertiseCard[] = [
     description:
       "De juiste content verdient het om gezien te worden. We verspreiden de content waar jouw doelgroep is. Zo raakt jouw merk de juiste mensen, precies waar en wanneer het telt.",
     cta: "Meer over activatie",
-    href: "/expertises/activatie",
+    href: "",
     bg: "#3ECBA0",
     numberColor: "#2EB088",
     imageBorder: "#FFFFFF",
