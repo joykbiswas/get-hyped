@@ -215,8 +215,10 @@ function ExpertiseCard({
               {card.description}
             </p>
 
-            <a
+            <motion.a
               href={card.href}
+              whileHover={{ x: 15 }}
+              transition={{ type: "spring", stiffness: 300 }}
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -231,7 +233,9 @@ function ExpertiseCard({
               }}
             >
               {card.cta}
-              <span
+              <motion.span
+                whileHover={{ x: 5 }}
+                transition={{ type: "spring", stiffness: 400 }}
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -244,8 +248,8 @@ function ExpertiseCard({
                 }}
               >
                 →
-              </span>
-            </a>
+              </motion.span>
+            </motion.a>
           </div>
 
           {/* Image */}

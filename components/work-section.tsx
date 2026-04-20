@@ -197,13 +197,25 @@ export function WorkSection() {
               Wij vertellen jouw verhaal. Op een manier die écht past bij jouw
               doelgroep. Met creatieve content die werkt en het verschil maakt.
             </p>
+             <motion.div
+            className="mt-8"
+            whileHover={{ x: 15 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
             <a
-              href="#work"
-              className="mt-5 inline-flex items-center gap-2 pl-5 pr-2 py-2 rounded-full border-2 border-[#1a1a1a] text-[#1a1a1a] font-semibold text-sm hover:bg-[#1a1a1a] hover:text-white transition-colors"
+              href="#about"
+              className="inline-flex items-center gap-3 px-6 py-3 rounded-md border-2 border-[#1a1a1a] text-[#1a1a1a] font-semibold transition-all duration-300 group"
             >
               Bekijk al ons werk
-              <span className="w-8 h-8 rounded-full bg-[#1a1a1a] text-white flex items-center justify-center flex-shrink-0">→</span>
+              <motion.span
+                className="w-10 h-10 rounded-full bg-[#1a1a1a] text-white flex items-center justify-center"
+                whileHover={{ x: 5 }}
+                transition={{ type: "spring", stiffness: 400 }}
+              >
+                →
+              </motion.span>
             </a>
+          </motion.div>
           </motion.div>
 
           {/* Overlapping deck */}
@@ -281,13 +293,26 @@ export function WorkSection() {
               Wij vertellen jouw verhaal. Op een manier die écht past bij jouw
               doelgroep. Met creatieve content die werkt en het verschil maakt.
             </p>
+            <motion.div
+            className="mt-8"
+            whileHover={{ x: 15 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
             <a
-              href="#work"
-              className="mt-6 inline-flex items-center gap-2 pl-5 pr-2 py-2 rounded-full border-2 border-[#1a1a1a] text-[#1a1a1a] font-semibold text-sm hover:bg-[#1a1a1a] hover:text-white transition-colors"
+              href="#about"
+              className="inline-flex items-center gap-3 px-6 py-3 rounded-md border-2 border-[#1a1a1a] text-[#1a1a1a] font-semibold transition-all duration-300 group"
             >
               Bekijk al ons werk
-              <span className="w-9 h-9 rounded-full bg-[#1a1a1a] text-white flex items-center justify-center flex-shrink-0">→</span>
+              <motion.span
+                className="w-10 h-10 rounded-full bg-[#1a1a1a] text-white flex items-center justify-center"
+                whileHover={{ x: 5 }}
+                transition={{ type: "spring", stiffness: 400 }}
+              >
+                →
+              </motion.span>
             </a>
+          </motion.div>
+           
           </motion.div>
 
           {/* Card 1 — orange */}

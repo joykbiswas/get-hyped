@@ -59,19 +59,25 @@ export function About() {
             whileHover={{ x: 15 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <a
-              href="#about"
-              className="inline-flex items-center gap-3 px-6 py-3 rounded-full border-2 border-[#1a1a1a] text-[#1a1a1a] font-semibold transition-all duration-300 group"
+            <motion.div
+              className="mt-8"
+              whileHover={{ x: 15 }}
+              transition={{ type: "spring", stiffness: 300 }}
             >
-              Leer ons kennen
-              <motion.span
-                className="w-10 h-10 rounded-full bg-[#1a1a1a] text-white flex items-center justify-center"
-                whileHover={{ x: 5 }}
-                transition={{ type: "spring", stiffness: 400 }}
+              <a
+                href="#about"
+                className="inline-flex items-center gap-3 px-6 py-3 rounded-md border-2 border-[#1a1a1a] text-[#1a1a1a] font-semibold transition-all duration-300 group"
               >
-                →
-              </motion.span>
-            </a>
+                Leer ons kennen
+                <motion.span
+                  className="w-10 h-10 rounded-full bg-[#1a1a1a] text-white flex items-center justify-center"
+                  whileHover={{ x: 5 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  →
+                </motion.span>
+              </a>
+            </motion.div>
           </motion.div>
         </motion.div>
 
@@ -101,7 +107,7 @@ export function About() {
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative rounded-3xl overflow-hidden shadow-lg -rotate-2"  
+          className="relative rounded-3xl overflow-hidden shadow-lg -rotate-2"
         >
           <div className="aspect-[4/3] w-full bg-black">
             <video
@@ -140,15 +146,25 @@ export function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <a
-            href="#about"
-            className="inline-flex items-center gap-3 px-6 py-3 rounded-full border-2 border-[#1a1a1a] text-[#1a1a1a] font-semibold hover:bg-[#1a1a1a] hover:text-white transition-all duration-300"
+          <motion.div
+            className="mt-8"
+            whileHover={{ x: 15 }}
+            transition={{ type: "spring", stiffness: 300 }}
           >
-            Leer ons kennen
-            <span className="w-8 h-8 rounded-full bg-[#1a1a1a] text-white flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1">
-              →
-            </span>
-          </a>
+            <a
+              href="#about"
+              className="inline-flex items-center gap-3 px-6 py-3 rounded-md border-2 border-[#1a1a1a] text-[#1a1a1a] font-semibold transition-all duration-300 group"
+            >
+              Leer ons kennen
+              <motion.span
+                className="w-10 h-10 rounded-full bg-[#1a1a1a] text-white flex items-center justify-center"
+                whileHover={{ x: 5 }}
+                transition={{ type: "spring", stiffness: 400 }}
+              >
+                →
+              </motion.span>
+            </a>
+          </motion.div>
         </motion.div>
       </div>
     </div>
